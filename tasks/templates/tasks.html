@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center display-3">{{ name}}</h1>
+            {% for task in tasks %}
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="{% url "task_detail" task.id %}">
+                            <h1>{{ task.title }}</h1>
+                        </a>
+                            <p>{{ task.description }}</p>
+                            <p>{{ task.user }}</p>
+                            <p>{{ task.datecompleted | date:'M j Y' }}</p>
+                            {% if task.important %}
+                                <p>TAREA IMPORTANTE</p>
+                            {% endif %}
+                    </li>
+                </ul>
+        
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+
